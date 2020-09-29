@@ -1,0 +1,14 @@
+version: '3'
+services:
+  go_blog_native:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go_blog_native
+    volumes:
+      - ./app/:/app
+    ports:
+      - '8080:8080'  
+    restart: on-failure
+    stdin_open: true
+    tty: true
