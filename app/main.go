@@ -1,16 +1,23 @@
 package main
 
 import (
-	"fmt"
-    "log"
-    "net/http"
-    "encoding/json"
-    "github.com/gorilla/mux"
+	"log"
+	"net/http"
+
+	"github.com/deozza/go-blog-native/utils"
+	"github.com/deozza/go-blog-native/user"
 )
 
-
+func Migrate(db *gorm.DB) {
+	db.Debug().AutoMigrate(&User{})
+}
 
 func main() {
-    r := buildRouter()
-    log.Fatal(http.ListenAndServe(":8080", r))
+	db := utils.InitDb()
+	Migrate(db)
+	defer db.Close()
+
+	r := utils.InitRouter()
+	log.Fatal(http.ListenAndServe(":8080", r))
 }
+

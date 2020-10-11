@@ -5,10 +5,19 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: go_blog_native
-    volumes:
-      - ./app/:/app
     ports:
       - '8080:8080'  
     restart: on-failure
     stdin_open: true
     tty: true
+  mysql_go_blog_native:
+    image: mysql:5.7
+    container_name: mysql_go_blog_native
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: go-blog-native
+      MYSQL_USER: go
+      MYSQL_PASSWORD: go
+    ports:
+       - 3306:3306
+    restart: on-failure
