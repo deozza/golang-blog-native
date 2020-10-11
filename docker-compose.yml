@@ -8,8 +8,6 @@ services:
     ports:
       - '8080:8080'  
     restart: on-failure
-    stdin_open: true
-    tty: true
   mysql_go_blog_native:
     image: mysql:5.7
     container_name: mysql_go_blog_native

@@ -1,4 +1,4 @@
-package utils
+package commons
 
 import(
 	"gorm.io/driver/mysql"
@@ -14,13 +14,13 @@ var db *gorm.DB
 func InitDb() *gorm.DB{
 	d, err := gorm.Open(mysql.Open("go:go@tcp(mysql_go_blog_native:3306)/go-blog-native?charset=utf8&parseTime=True"), &gorm.Config{})
 
- 	if err!=nil{
- 		panic(err.Error())
- 	} 
+	if err!=nil{
+		panic(err.Error())
+	}
 
- 	db = d
+	db = d
 
- 	return db
+	return db
 }
 
 func GetDb()  *gorm.DB{

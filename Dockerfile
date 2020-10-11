@@ -1,13 +1,11 @@
-FROM golang:1.15
+FROM golang:latest
 
 WORKDIR $GOPATH/src/github.com/deozza/golang-blog-native
 
 COPY ./app .
 
-#RUN go mod init github.com/deozza/golang-blog-native
-#RUN go get -d -v ./...
-#RUN go install -v ./...
+RUN go mod init github.com/deozza/golang-blog-native
+RUN go get -u -d -v ./...
+RUN go build
 
-#EXPOSE 8080
-
-#CMD ["golang-blog-native"]
+CMD ["./golang-blog-native"]

@@ -2,32 +2,16 @@ package user
 
 import (
 	"time"
-	"gorm.io/gorm"
 )
 
 type User struct {
-
-	Uuid      string    `json:"uuid" gorm:"primary_key"`
-	Username  string    `json:"username"`
-	Email     string    `json:"email"`
-	Password  string    `json:"password"`
-	CreatedAt time.Time `json:"CreatedAt" gorm:"autoCreateTime"`
-	UpdatedAt time.Time `json:"updatedAt" gorm:"autoUpdateTime"`
-	IsActive  bool      `json:"isActive" gorm:"default:0"`
-	Roles     string    `json:"roles" gorm:"default:"{"ROLE_USER"}"`
-}
-
-
-func Save(u *User) {
-
-}
-
-func FindAll() {
-}
-
-func FindByUuid(uuid string){
-
-}
-
-func Delete(uuid string) {
+	ID        uint      `json:"-"         gorm:"primary_key;column:id"`
+	Uuid      string    `json:"uuid"      gorm:"column:uuid;unique;not null"`
+	Username  string    `json:"username"  gorm:"column:username;size:255;unique;not null"`
+	Email     string    `json:"email"     gorm:"column:email;size:255;unique;not null"`
+	Password  string    `json:"password"  gorm:"column:password;not null"`
+	CreatedAt time.Time `json:"CreatedAt" gorm:"column:createdAt;autoCreateTime;not null"`
+	UpdatedAt time.Time `json:"updatedAt" gorm:"column:updatedAt;autoUpdateTime;not null"`
+	IsActive  bool      `json:"isActive"  gorm:"column:isActive;default:0"`
+	Roles     string    `json:"roles"     gorm:"column:roles;default:{"ROLE_USER"}"`
 }
